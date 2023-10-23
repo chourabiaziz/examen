@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stade index
+{% endblock %}
+
+{% block body %}
+	<h1>Stade
+	</h1>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>RefStade</th>
+				<th>Name</th>
+				<th>CreatedAt</th>
+				<th>Players List</th>
+
+
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for stade in stades %}
+				<tr>
+					<td>{{ stade.refStade }}</td>
+					<td>{{ stade.name }}</td>
+					<td>{{ stade.createdAt ? stade.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						{% for x in stade.players %}
+							{% if stade.players %}
+								{{ x.name }}-{{ x.surname }}<br>
+							{% else %}
+								empty
+							{% endif %}
+						{% endfor %}
+					</td>
+					<td>
+						<a href="{{ path('app_stade_show', {'refStade': stade.refStade}) }}">show</a>
+						<a href="{{ path('app_stade_edit', {'refStade': stade.refStade}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_stade_new') }}">New</a>
+{% endblock %}

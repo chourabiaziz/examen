@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Stade
+{% endblock %}
+
+{% block body %}
+	<h1>new Stade</h1>
+
+	{{ include('stade/_form.html.twig') }}
+
+	<a href="{{ path('app_stade_index') }}">back</a>
+{% endblock %}
